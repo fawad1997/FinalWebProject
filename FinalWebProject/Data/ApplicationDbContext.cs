@@ -16,6 +16,7 @@ namespace FinalWebProject.Data
         }
 
         public DbSet<Article> Articles { get; set; }
+        public DbSet<ContactUs> ContactUss { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

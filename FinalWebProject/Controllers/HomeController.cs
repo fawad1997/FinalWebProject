@@ -32,11 +32,23 @@ namespace FinalWebProject.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Contact(ContactUs contactUs)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(contactUs);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Contact));
+            }
+            return Content("Add new Contact");
         }
 
         public IActionResult Error()

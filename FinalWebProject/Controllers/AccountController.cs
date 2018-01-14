@@ -124,9 +124,7 @@ namespace FinalWebProject.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
