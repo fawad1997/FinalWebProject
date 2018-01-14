@@ -13,6 +13,9 @@ namespace FinalWebProject.Controllers
 {
     public class HomeController : Controller
     {
+        [TempData]
+        public string StatusMessage { get; set; }
+
         private readonly ApplicationDbContext _context;
 
         public HomeController(ApplicationDbContext context)
@@ -36,8 +39,8 @@ namespace FinalWebProject.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
-            return View();
+            var model = new ContactUs { StatusMessage = StatusMessage };
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> Contact(ContactUs contactUs)
@@ -46,9 +49,11 @@ namespace FinalWebProject.Controllers
             {
                 _context.Add(contactUs);
                 await _context.SaveChangesAsync();
+                StatusMessage = "Message has been Sent";
                 return RedirectToAction(nameof(Contact));
             }
-            return Content("Add new Contact");
+            var model = new ContactUs { StatusMessage = StatusMessage };
+            return View(model);
         }
 
         public IActionResult Error()

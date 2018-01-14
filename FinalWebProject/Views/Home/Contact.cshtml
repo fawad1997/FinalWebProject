@@ -5,6 +5,7 @@
 <div class="container">
     <h1 class="text-center">@ViewData["Title"]</h1>
     <!--Form-->
+    @Html.Partial("_StatusMessage", Model.StatusMessage)
     <form asp-controller="Home" asp-action="Contact" method="post" class="margin-bottom10">
         <div class="form-group">
             <label>Subject</label>

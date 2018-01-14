@@ -19,5 +19,7 @@ namespace FinalWebProject.Models
         public int Type { get; set; }
         [Required]
         public String Body { get; set; }
+
+        public String StatusMessage { get; set; }
     }
 }
